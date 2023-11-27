@@ -1,0 +1,12 @@
+{
+  "name": "online_shop",
+  "version": "1.0.0",
+  "description": "This is just a test doc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
