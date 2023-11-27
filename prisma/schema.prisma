@@ -31,14 +31,28 @@ model Order {
 }
 
 model Product {
-  id        String   @id @default(uuid())
-  name      String   @db.VarChar(255)
-  price     Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  name        String   @db.VarChar(255)
+  description String?
+  image       String
+  original_price       Int
+  current_price        Int
+  savings              Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  User    User?   @relation(fields: [userId], references: [id])
-  userId  String?
-  Order   Order?  @relation(fields: [orderId], references: [id])
-  orderId String?
+  User       User?     @relation(fields: [userId], references: [id])
+  userId     String?
+  Order      Order?    @relation(fields: [orderId], references: [id])
+  orderId    String?
+  Category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String    @db.VarChar(255)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  products  Product[]
 }
