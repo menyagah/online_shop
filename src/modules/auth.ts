@@ -3,17 +3,17 @@ import bcrypt from 'bcrypt';
 
 
 export const comparePassword = (password, hash) => {
-    return bcrypt.compareSync(password, hash);
+    return bcrypt.compare(password, hash);
 };
 
 export const hashPassword = (password) => {
-    return bcrypt.hashSync(password, 10);
+    return bcrypt.hash(password, 10);
 }
 
 export const createJwt = (user) => {
   const token = jwt.sign({ 
         id: user.id, 
-        phone: user.phone 
+        phone: user.name 
     }, 
     process.env.JWT_SECRET, {
         expiresIn: 86400 // 24 hours
