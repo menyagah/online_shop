@@ -10,3 +10,10 @@ export const createJwt = (user) => {
         });
     return token;
 };
+
+export const protect = (req, res)=>{
+    const bearer = req.headers.authorization;
+    if(!bearer || !bearer.startsWith('Bearer ')){
+        return res.status(401).json('not authorized').end();
+    }
+}
