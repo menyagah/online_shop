@@ -12,5 +12,5 @@ export const handleInputErrors = (req, res, next)=> {
 
 
 export const handleInputs = (...inputs) => {
-    return body(inputs).isInt()
+    return body(inputs).isString()
 }

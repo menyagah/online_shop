@@ -1,21 +1,28 @@
 import {Router} from 'express';
-import { body, validationResult } from "express-validator";
 import { handleInputErrors, handleInputs } from './modules/middleware';
+import { getOneProduct, getProducts, createProduct, updateProduct, deleteProduct } from './handlers/product';
+import {protect} from './modules/auth';
 
 
 const router = Router();
+
 
 
 /**
  * Product routes
  * 
  */
-router.get('/product', (req, res)=>{})
-router.get('/product/:id', ()=>{})
-router.post('/product', handleInputs('name','description', 'image', 'current_price', 'savings' ), handleInputErrors, (req, res)=>{})
-router.put('/product/:id', handleInputs('current_price', 'savings'), handleInputErrors, (req, res) => {
-})
-router.delete('/product/:id', ()=>{})
+
+router.get('/product', getProducts)
+router.get('/product/:id', getOneProduct)
+
+
+/**
+ * Admin Access
+ */
+router.post('/product', handleInputs('name','description', 'image','original_price' ,'current_price', 'savings' ), handleInputErrors, createProduct)
+router.put('/product/:id', handleInputs('current_price', 'savings'), handleInputErrors, updateProduct)
+router.delete('/product/:id', deleteProduct)
 
 
 /**

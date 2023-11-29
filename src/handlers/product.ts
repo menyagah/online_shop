@@ -40,7 +40,6 @@ export const createProduct = async(req, res) => {
             original_price: req.body.original_price,
             current_price: req.body.current_price,
             savings: req.body.savings
-
         }
     })
     res.json({data: product})

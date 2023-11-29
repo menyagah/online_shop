@@ -36,9 +36,9 @@ model Product {
   name        String   @db.VarChar(255)
   description String?
   image       String
-  original_price       Int
-  current_price        Int
-  savings              Int
+  original_price       String
+  current_price        String
+  savings              String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
