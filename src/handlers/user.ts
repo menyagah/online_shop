@@ -32,3 +32,14 @@ export const signin = async(req, res) => {
     res.json({token})
 }
 
+export const getUserProduct =async (req, res) => {
+    const product = await prisma.user.findUnique({
+        where: {
+            id: req.user.id
+        },
+        include: {
+            products: true
+        }
+    })
+    
+}
