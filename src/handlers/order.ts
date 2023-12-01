@@ -2,18 +2,8 @@ import prisma from "../db"
 
 
 export const getOrders = async(req, res) => {
-    const order = await prisma.order.findUnique({
-        where: {
-            id: req.user.id,
-            completed:  true ?? false,
-        },
-        include: {
-            product: true,
-        }
-    })
-
-    res.json({data: order.product})
-
+    const orders = await prisma.order.findMany()
+    res.json({data: orders})
 }
 
 export const createOrder = async (req, res) => {
