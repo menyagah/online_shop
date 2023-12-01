@@ -24,7 +24,7 @@ export const createProduct = async(req, res) => {
             name: req.body.name,
             description: req.body.description,
             image: req.body.image,
-            count: req.body.count,
+            Quantity_of_items_bought: req.body.count,
             original_price: req.body.original_price,
             current_price: req.body.current_price,
             savings: req.body.savings

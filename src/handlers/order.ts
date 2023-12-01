@@ -2,7 +2,7 @@ import prisma from "../db"
 
 export const getOrders = async (req, res) => {
   try {
-    // You might want to implement pagination for large datasets
+   
     const page = req.query.page ? parseInt(req.query.page) : 1;
     const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 10;
 
@@ -10,7 +10,7 @@ export const getOrders = async (req, res) => {
       take: pageSize,
       skip: (page - 1) * pageSize,
       orderBy: {
-        createdAt: 'desc', // Adjust the sorting based on your requirements
+        createdAt: 'desc', 
       },
     });
 
@@ -57,7 +57,7 @@ export const createOrder = async (req, res) => {
                     id: productId,
                 },
                 data: {
-                    count: { increment: 1}
+                    Quantity_of_items_bought: { increment: 1}
                 },
             });
         }
