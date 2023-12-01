@@ -2,7 +2,7 @@ import {Router} from 'express';
 import { body } from 'express-validator';
 import { handleInputErrors, handleInputs } from './modules/middleware';
 import { getOneProduct, getProducts, createProduct, updateProduct, deleteProduct } from './handlers/product';
-import { createOrder, getOrders } from './handlers/order';
+import { createOrder, deleteOrder, getOrders } from './handlers/order';
 import {protect} from './modules/auth';
 
 
@@ -33,5 +33,6 @@ router.delete('/product/:id', deleteProduct)
  */
 
 router.get('/order', protect, getOrders)
+router.delete('/order/:id', protect, deleteOrder)
 router.post('/order', protect, handleInputs('userId', 'productId'), body('completed').isBoolean(), handleInputErrors, createOrder)
 export default router;
