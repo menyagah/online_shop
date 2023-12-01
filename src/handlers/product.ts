@@ -18,6 +18,10 @@ export const getOneProduct = async(req, res) => {
     res.json({data: product})
 }
 
+export const addUserProduct =async (req, res) => {
+    
+}
+
 export const getUserProduct =async (req, res) => {
     const user = await prisma.user.findUnique({
         where: {
@@ -37,6 +41,7 @@ export const createProduct = async(req, res) => {
             name: req.body.name,
             description: req.body.description,
             image: req.body.image,
+            count: req.body.count,
             original_price: req.body.original_price,
             current_price: req.body.current_price,
             savings: req.body.savings
