@@ -57,7 +57,7 @@ export const createOrder = async (req, res) => {
                     id: productId,
                 },
                 data: {
-                    Quantity_of_items_bought: { increment: 1}
+                    quantity: { increment: 1}
                 },
             });
         }

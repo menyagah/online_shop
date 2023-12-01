@@ -22,7 +22,7 @@ router.get('/product/:id', getOneProduct)
 /**
  * Admin Access
  */
-router.post('/product', handleInputs('name','description', 'image','original_price' ,'current_price', 'savings' ), body('count').isInt(), handleInputErrors, createProduct)
+router.post('/product', handleInputs('name','description', 'image','original_price' ,'current_price', 'savings' ), body('quantity').isInt(), handleInputErrors, createProduct)
 router.put('/product/:id', handleInputs('current_price', 'savings'), handleInputErrors, updateProduct)
 router.delete('/product/:id', deleteProduct)
 
