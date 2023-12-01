@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-
+import config from "./config";
 import app from "./server";
 
-app.listen(8100, () => console.log('Server is listening on port 8100...'));
+app.listen(config.port, () => console.log(`Server is listening on http://localhost:${config.port}`));
