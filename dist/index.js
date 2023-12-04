@@ -28,6 +28,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var dotenv = __importStar(require("dotenv"));
 dotenv.config();
+var config_1 = __importDefault(require("./config"));
 var server_1 = __importDefault(require("./server"));
-server_1.default.listen(8100, function () { return console.log('Server is listening on port 8100...'); });
+server_1.default.listen(config_1.default.port, function () { return console.log("Server is listening on http://localhost:".concat(config_1.default.port)); });
 //# sourceMappingURL=index.js.map
