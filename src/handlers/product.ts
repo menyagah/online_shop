@@ -3,16 +3,7 @@ import prisma from "../db"
 
 export const getProducts = async(req, res) => {
     const products = await prisma.product.findMany()
-    res.json({data: {id: res.id,
-        name: res.name,
-        description: res.description,
-        image: res.image,
-        original_price: res.original_price,
-        current_price: res.current_price,
-        savings: res.savings,
-        createdAt: res.createdAt,
-        updatedAt: res.updatedAt,
-        }})
+    res.json({data: products})
 }
 
 
