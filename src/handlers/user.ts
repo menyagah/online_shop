@@ -1,7 +1,5 @@
 import prisma from "../db";
-import { comparePassword, createJwt, hashPassword } from "../modules/auth";
-
-
+import { comparePassword, hashPassword, createRandomSessionId } from "../modules/auth";
 
 export const createNewUser = async (req, res) => {
     try {
@@ -27,8 +25,15 @@ export const createNewUser = async (req, res) => {
             },
         });
 
-        const token = createJwt(newUser);
-        res.json({ token });
+        // Create a new session for the user
+        const session = await prisma.session.create({
+            data: {
+                sessionId: createRandomSessionId(), // You need to implement createRandomSessionId function
+                userId: newUser.id,
+            },
+        });
+
+        res.json({ sessionId: session.sessionId });
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ message: 'Internal server error' });
@@ -58,8 +63,15 @@ export const signin = async (req, res) => {
             return;
         }
 
-        const token = createJwt(user);
-        res.json({ token });
+        // Create a new session for the user
+        const session = await prisma.session.create({
+            data: {
+                sessionId: createRandomSessionId(), // You need to implement createRandomSessionId function
+                userId: user.id,
+            },
+        });
+
+        res.json({ sessionId: session.sessionId });
     } catch (error) {
         console.error('Error signing in:', error);
         res.status(500).json({ message: 'Internal server error' });
@@ -67,3 +79,5 @@ export const signin = async (req, res) => {
         await prisma.$disconnect();
     }
 };
+
+

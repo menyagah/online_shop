@@ -13,7 +13,6 @@ export const getOrders = async (req, res) => {
         createdAt: 'desc', 
       },
     });
-
     res.status(200).json({ data: orders, page, pageSize });
   } catch (error) {
     console.error('Error fetching orders:', error);
