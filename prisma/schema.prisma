@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  phone     String    @unique
+  name      String?
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  orders    Order[]
+  products  Product[]
+  session   Session[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  sessionId String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  completed Boolean
+  user      User     @relation(fields: [userId], references: [id])
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+}
+
+model Product {
+  id             String   @id @default(uuid())
+  name           String   @db.VarChar(255)
+  description    String?
+  image          String
+  original_price String
+  current_price  String
+  savings        String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  quantity Int
+
+  User       User?     @relation(fields: [userId], references: [id])
+  userId     String?
+  Category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+  Order      Order[]
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String    @db.VarChar(255)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  products  Product[]
+}

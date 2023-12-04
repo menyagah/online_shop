@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Product" ALTER COLUMN "original_price" SET DATA TYPE TEXT,
+ALTER COLUMN "current_price" SET DATA TYPE TEXT,
+ALTER COLUMN "savings" SET DATA TYPE TEXT;
